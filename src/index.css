@@ -1,13 +1,113 @@
-body {
+:root,
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  line-height: 1.5;
+  letter-spacing: 0.05rem;
+  font-weight: 400;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Quicksand', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: rgb(245, 245, 245);
+}
+
+.header {
+  width: calc(100% - 6rem);
+  height: 10rem;
+  background-color: rgb(221, 221, 221);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem auto 0;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.header .location {
+  font-size: 2.2rem;
+}
+
+.header h2 {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.weather__card__container {
+  display: flex;
+  justify-content: center;
+}
+
+.weather__card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 5rem 1rem 0;
+  padding: 2rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.weather__card__title__container {
+  align-self: start;
+  margin-bottom: 1rem;
+}
+
+.weather__card__title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.weather__card__time {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(133, 133, 133);
+  align-self: baseline;
+}
+
+.weather__card__icon {
+  align-self: center;
+}
+
+.weather__card__icon.day svg {
+  fill: rgb(252, 201, 74);
+}
+
+.weather__card__icon.night svg {
+  fill: rgb(94, 94, 94);
+}
+
+.weather__card__icon svg {
+  width: 12rem;
+  height: 12rem;
+  stroke-width: 0.75px;
+  stroke: white;
+}
+
+.weather__card__temp__container {
+  display: flex;
+  align-items: baseline;
+}
+
+.weather__card__temp {
+  font-size: 5rem;
+}
+
+.weather__card__state {
+  font-size: 2rem;
+  font-weight: 500;
+  color: rgb(133, 133, 133);
+}
+
+.weather__card__condition {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(94, 94, 94);
 }
