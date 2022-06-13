@@ -25,7 +25,7 @@ body {
   justify-content: center;
   margin: 3rem auto 0;
   border-radius: 0.25rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
 }
 
 .header .location {
@@ -50,6 +50,7 @@ body {
   margin: 5rem 1rem 0;
   padding: 2rem;
   background-color: rgb(255, 255, 255);
+  border-radius: 0.25rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 

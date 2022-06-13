@@ -1,16 +1,14 @@
 import Icon from './Icon.js';
 
-export default function Current(props) {
-  let hours = new Date().getHours();
-  let minutes = new Date().getMinutes();
+export default function Tonight(props) {
+  let month = new Date().getMonth();
+  let day = new Date().getDate();
   return (
     <div className='weather__card'>
       <div className='weather__card__title__container'>
-        <h5 className='weather__card__title'>Current Weather</h5>
+        <h5 className='weather__card__title'>Tonight</h5>
         <h6 className='weather__card__time'>
-          {(hours > 12 ? hours - 12 : hours) ||
-            (hours == 0 ? (hours = 12) : hours)}
-          :{minutes}
+          {month + 1}/{day}
         </h6>
       </div>
       <div
@@ -20,6 +18,7 @@ export default function Current(props) {
       </div>
       <div className='weather__card__temp__container'>
         <h3 className='weather__card__temp'>{props.temp}°</h3>
+        <p className='weather__card__state'>Lo</p>
       </div>
       <p className='weather__card__condition'>{props.condition}</p>
     </div>

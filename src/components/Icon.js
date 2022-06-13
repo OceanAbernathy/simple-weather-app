@@ -82,7 +82,6 @@ export default function Icon(props) {
       icon = <WiDaySnow />;
       break;
     case 24:
-      //TODO ice
       icon = <WiDaySnow />;
       break;
     case 25:
