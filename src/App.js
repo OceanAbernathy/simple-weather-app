@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Current from './components/Current.js';
 import Today from './components/Today.js';
@@ -7,8 +7,8 @@ import Tonight from './components/Tonight.js';
 export default function App() {
   const locationKey = '341804';
   const apiKey = '1GDTCke9q5JyLD4nLlBDxpgPzYG1G2LG';
-  const [current, setCurrent] = React.useState([]);
-  const [daily, setDaily] = React.useState([]);
+  const [current, setCurrent] = useState([]);
+  const [daily, setDaily] = useState([]);
 
   useEffect(() => {
     axios
@@ -20,7 +20,8 @@ export default function App() {
           '&details=true&metric=false'
       )
       .then((response) => {
-        setCurrent(response.data[0]);
+        const responseData = response.data[0];
+        setCurrent(responseData);
       });
     axios
       .get(
@@ -31,7 +32,8 @@ export default function App() {
           '&details=true&metric=false'
       )
       .then((response) => {
-        setDaily(response.data.DailyForecasts[0]);
+        const responseData = response.data.DailyForecasts[0];
+        setDaily(responseData);
       });
   }, []);
   console.log(current, 'current');
@@ -46,7 +48,7 @@ export default function App() {
         </div>
       </div>
       <div className='weather__card__container'>
-        <Current
+        {/* <Current
           icon={current.WeatherIcon}
           temp={current.Temperature.Imperial.Value}
           state={current.Temperature.Imperial.Unit}
@@ -61,7 +63,7 @@ export default function App() {
           icon={daily.Night.Icon}
           temp={daily.Temperature.Minimum.Value}
           condition={daily.Night.IconPhrase}
-        />
+        /> */}
       </div>
     </div>
   );
