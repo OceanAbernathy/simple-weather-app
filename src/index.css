@@ -15,6 +15,15 @@ body {
   background-color: rgb(245, 245, 245);
 }
 
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.header__container {
+  padding-top: 3rem;
+}
+
 .header {
   width: calc(100% - 6rem);
   height: 10rem;
@@ -23,7 +32,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 3rem auto 0;
+  margin: 0 auto;
   border-radius: 0.25rem;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
 }

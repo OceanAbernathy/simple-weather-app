@@ -9,6 +9,7 @@ export default function App() {
   const apiKey = '1GDTCke9q5JyLD4nLlBDxpgPzYG1G2LG';
   const [current, setCurrent] = useState([]);
   const [daily, setDaily] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -22,18 +23,19 @@ export default function App() {
       .then((response) => {
         const responseData = response.data[0];
         setCurrent(responseData);
-      });
-    axios
-      .get(
-        'http://dataservice.accuweather.com/forecasts/v1/daily/1day/' +
-          locationKey +
-          '?apikey=' +
-          apiKey +
-          '&details=true&metric=false'
-      )
-      .then((response) => {
-        const responseData = response.data.DailyForecasts[0];
-        setDaily(responseData);
+        axios
+          .get(
+            'http://dataservice.accuweather.com/forecasts/v1/daily/1day/' +
+              locationKey +
+              '?apikey=' +
+              apiKey +
+              '&details=true&metric=false'
+          )
+          .then((response) => {
+            const responseData = response.data.DailyForecasts[0];
+            setDaily(responseData);
+            setIsLoading(false);
+          });
       });
   }, []);
   console.log(current, 'current');
@@ -41,30 +43,34 @@ export default function App() {
 
   return (
     <div className='App'>
-      <div className='header__container'>
-        <div className='header'>
-          <h1 className='location'>Gilbert, Arizona</h1>
-          <h2>Weather Outlook</h2>
+      {!isLoading && (
+        <div className='header__container'>
+          <div className='header'>
+            <h1 className='location'>Gilbert, Arizona</h1>
+            <h2>Weather Outlook</h2>
+          </div>
         </div>
-      </div>
-      <div className='weather__card__container'>
-        {/* <Current
-          icon={current.WeatherIcon}
-          temp={current.Temperature.Imperial.Value}
-          state={current.Temperature.Imperial.Unit}
-          condition={current.WeatherText}
-        />
-        <Today
-          icon={daily.Day.Icon}
-          temp={daily.Temperature.Maximum.Value}
-          condition={daily.Day.IconPhrase}
-        />
-        <Tonight
-          icon={daily.Night.Icon}
-          temp={daily.Temperature.Minimum.Value}
-          condition={daily.Night.IconPhrase}
-        /> */}
-      </div>
+      )}
+      {!isLoading && (
+        <div className='weather__card__container'>
+          <Current
+            icon={current.WeatherIcon}
+            temp={current.Temperature.Imperial.Value}
+            state={current.Temperature.Imperial.Unit}
+            condition={current.WeatherText}
+          />
+          <Today
+            icon={daily.Day.Icon}
+            temp={daily.Temperature.Maximum.Value}
+            condition={daily.Day.IconPhrase}
+          />
+          <Tonight
+            icon={daily.Night.Icon}
+            temp={daily.Temperature.Minimum.Value}
+            condition={daily.Night.IconPhrase}
+          />
+        </div>
+      )}
     </div>
   );
 }

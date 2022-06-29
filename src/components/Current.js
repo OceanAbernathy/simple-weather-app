@@ -3,6 +3,7 @@ import Icon from './Icon.js';
 export default function Current(props) {
   let hours = new Date().getHours();
   let minutes = new Date().getMinutes();
+
   return (
     <div className='weather__card'>
       <div className='weather__card__title__container'>
@@ -10,7 +11,7 @@ export default function Current(props) {
         <h6 className='weather__card__time'>
           {(hours > 12 ? hours - 12 : hours) ||
             (hours == 0 ? (hours = 12) : hours)}
-          :{minutes}
+          :{minutes < 10 ? '0' + minutes : minutes}
         </h6>
       </div>
       <div
