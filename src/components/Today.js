@@ -1,6 +1,6 @@
 import Icon from './Icon.js';
 
-export default function Today(props) {
+const Today = (props) => {
   let month = new Date().getMonth();
   let day = new Date().getDate();
   return (
@@ -23,4 +23,6 @@ export default function Today(props) {
       <p className='weather__card__condition'>{props.condition}</p>
     </div>
   );
-}
+};
+
+export default Today;

@@ -1,6 +1,6 @@
 import Icon from './Icon.js';
 
-export default function Current(props) {
+const Current = (props) => {
   let hours = new Date().getHours();
   let minutes = new Date().getMinutes();
 
@@ -13,6 +13,7 @@ export default function Current(props) {
             (hours == 0 ? (hours = 12) : hours)}
           :{minutes < 10 ? '0' + minutes : minutes}
         </h6>
+        <span>{hours >= 12 ? 'PM' : 'AM'}</span>
       </div>
       <div
         className={`weather__card__icon ${props.icon <= 32 ? 'day' : 'night'}`}
@@ -25,4 +26,6 @@ export default function Current(props) {
       <p className='weather__card__condition'>{props.condition}</p>
     </div>
   );
-}
+};
+
+export default Current;

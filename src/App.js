@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
+import Search from './components/Search';
 import Current from './components/Current.js';
 import Today from './components/Today.js';
 import Tonight from './components/Tonight.js';
 
-export default function App() {
+const App = () => {
   const locationKey = '341804';
   const apiKey = '1GDTCke9q5JyLD4nLlBDxpgPzYG1G2LG';
   const [current, setCurrent] = useState([]);
@@ -44,12 +46,13 @@ export default function App() {
   return (
     <div className='App'>
       {!isLoading && (
-        <div className='header__container'>
-          <div className='header'>
-            <h1 className='location'>Gilbert, Arizona</h1>
-            <h2>Weather Outlook</h2>
-          </div>
-        </div>
+        // <div className='header__container'>
+        //   <div className='header'>
+        //     <h1 className='location'>Gilbert, Arizona</h1>
+        //     <h2>Weather Outlook</h2>
+        //   </div>
+        // </div>
+        <Search />
       )}
       {!isLoading && (
         <div className='weather__card__container'>
@@ -73,4 +76,6 @@ export default function App() {
       )}
     </div>
   );
-}
+};
+
+export default App;
