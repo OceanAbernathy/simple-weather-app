@@ -13,7 +13,7 @@ const App = () => {
   // const apiKey = process.env.REACT_APP_API_KEY;
   const [current, setCurrent] = useState([]);
   const [daily, setDaily] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   function getWeather(locationKey) {
     axios
@@ -38,7 +38,7 @@ const App = () => {
           .then((response) => {
             const responseData = response.data.DailyForecasts[0];
             setDaily(responseData);
-            // setIsLoading(false);
+            setIsLoading(false);
           });
       });
   }
@@ -86,7 +86,7 @@ const App = () => {
       )} */}
 
       <Search getWeather={getWeather} />
-      <div className='weather__card__container'>
+      {/* <div className='weather__card__container'>
         <Current
           icon={current.WeatherIcon}
           temp={current.Temperature.Imperial.Value}
@@ -103,9 +103,9 @@ const App = () => {
           temp={daily.Temperature.Minimum.Value}
           condition={daily.Night.IconPhrase}
         />
-      </div>
+      </div> */}
 
-      {/* {!isLoading && (
+      {!isLoading && (
         <div className='weather__card__container'>
           <Current
             icon={current.WeatherIcon}
@@ -124,7 +124,7 @@ const App = () => {
             condition={daily.Night.IconPhrase}
           />
         </div>
-      )} */}
+      )}
     </div>
   );
 };
