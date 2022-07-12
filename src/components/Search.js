@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Search = () => {
+const Search = ({ props, getWeather }) => {
   const apiKey = '1GDTCke9q5JyLD4nLlBDxpgPzYG1G2LG';
-  const [results, setResults] = React.useState([]);
+  const [results, setResults] = useState([]);
 
-  function handleChange(event) {
+  function handleClick(key) {
+    document.getElementById('locationsearch').value = '';
+    setResults([]);
+    getWeather(key);
+  }
+
+  function search(event) {
     let search = event.target.value;
     axios
       .get(
@@ -19,7 +25,11 @@ const Search = () => {
         if (response.data.length) {
           let data = response.data.map((item) => {
             return (
-              <div key={item.Key} className='search__item'>
+              <div
+                key={item.Key}
+                className='search__item'
+                onClick={() => handleClick(item.Key)}
+              >
                 {item.LocalizedName}, {item.AdministrativeArea.ID}
               </div>
             );
@@ -41,9 +51,9 @@ const Search = () => {
           id='locationsearch'
           name='locationsearch'
           className='search__box'
-          onChange={handleChange}
+          onChange={search}
         />
-        {results}
+        <div className='search__results'>{results}</div>
       </div>
     </div>
   );
