@@ -4,41 +4,46 @@ import axios from 'axios';
 const Search = ({ props, getWeather }) => {
   const apiKey = '1GDTCke9q5JyLD4nLlBDxpgPzYG1G2LG';
   const [results, setResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  let resultsDivs;
 
   function handleClick(key) {
     document.getElementById('locationsearch').value = '';
+    setSearchResults([]);
     setResults([]);
     getWeather(key);
   }
 
   function search(event) {
     let search = event.target.value;
-    axios
-      .get(
-        'http://dataservice.accuweather.com/locations/v1/cities/autocomplete?q=' +
-          search +
-          '&apikey=' +
-          apiKey
-      )
-      .then((response) => {
-        console.log(response);
-        if (response.data.length) {
-          let data = response.data.map((item) => {
-            return (
-              <div
-                key={item.Key}
-                className='search__item'
-                onClick={() => handleClick(item.Key)}
-              >
-                {item.LocalizedName}, {item.AdministrativeArea.ID}
-              </div>
-            );
-          });
-          setResults(data);
-        } else {
-          setResults([]);
-        }
-      });
+    if (search.length > 2) {
+      axios
+        .get(
+          'http://dataservice.accuweather.com/locations/v1/cities/autocomplete?q=' +
+            search +
+            '&apikey=' +
+            apiKey
+        )
+        .then((response) => {
+          setSearchResults(response.data);
+          resultsDivs = response.data
+            .filter((item) => item.Country.ID === 'US')
+            .map((item) => {
+              return (
+                <div
+                  key={item.Key}
+                  className='search__item'
+                  onClick={() => handleClick(item.Key)}
+                >
+                  {item.LocalizedName}, {item.AdministrativeArea.ID}
+                </div>
+              );
+            });
+          setResults(resultsDivs);
+        });
+    } else if (search.length <= 2) {
+      setSearchResults([]);
+    }
   }
 
   return (
@@ -53,7 +58,7 @@ const Search = ({ props, getWeather }) => {
           className='search__box'
           onChange={search}
         />
-        <div className='search__results'>{results}</div>
+        {searchResults && <div className='search__results'>{results}</div>}
       </div>
     </div>
   );
