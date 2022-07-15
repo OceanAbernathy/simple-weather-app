@@ -48,7 +48,7 @@ const Search = ({ props, getWeather }) => {
 
   return (
     <div className='header__container'>
-      <h1>Weather App</h1>
+      <h1>Current Weather Outlook</h1>
       <div className='search__container'>
         <input
           type='search'

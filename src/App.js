@@ -7,8 +7,7 @@ import Today from './components/Today.js';
 import Tonight from './components/Tonight.js';
 
 const App = () => {
-  const apiKey = '1GDTCke9q5JyLD4nLlBDxpgPzYG1G2LG';
-  // const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = process.env.REACT_APP_API_KEY;
   const [current, setCurrent] = useState([]);
   const [daily, setDaily] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -43,16 +42,6 @@ const App = () => {
 
   return (
     <div className='App'>
-      {/* {!isLoading && (
-        <div className='header__container'>
-          <div className='header'>
-            <h1 className='location'>Gilbert, Arizona</h1>
-            <h2>Weather Outlook</h2>
-          </div>
-        </div>
-        <Search getWeather={getWeather}/>
-      )} */}
-
       <Search getWeather={getWeather} />
 
       {!isLoading && (
